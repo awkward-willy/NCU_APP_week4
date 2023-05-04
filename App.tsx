@@ -7,7 +7,7 @@ import {
   Radio,
   ScrollView,
 } from "native-base";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { SafeAreaView, Alert } from "react-native";
 import TaskItem from "./Components/TaskItem";
 interface todoItem {
@@ -18,7 +18,6 @@ export default function App() {
   const [todo, setTodo] = useState<string>("");
   const [priority, setPriority] = useState<string>("1");
   const [todoList, setTodoList] = useState<todoItem[]>([]);
-  const inputBox = useRef<any>();
 
   const addTodo = (name: string, priority: string) => {
     const newTodo = { taskName: name, priority: priority };
@@ -34,7 +33,6 @@ export default function App() {
           </Text>
         </SafeAreaView>
         <Input
-          ref={inputBox}
           onChangeText={(text) => {
             setTodo(text);
           }}
@@ -65,7 +63,6 @@ export default function App() {
             addTodo(todo, priority);
             setTodo("");
             setPriority("1");
-            inputBox.current!.isFocused = false;
           }}
         >
           加入＋
